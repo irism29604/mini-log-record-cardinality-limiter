@@ -1,6 +1,6 @@
 [project]
 name = "mini-log-record-cardinality-limiter"
-version = "0.1.0"
+version = "0.1.1"
 description = "Limits distinct log attribute pairs to prevent unbounded cardinality growth"
 requires-python = ">=3.10"
 dependencies = []
