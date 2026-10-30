@@ -40,3 +40,10 @@ The trade-off is precision: once the ceiling is hit, you lose the ability to dis
 - **`True` and `1` are distinct** for the same reason (`json.dumps(True)` is `"true"`).
 
 - **No eviction.** Once the ceiling is reached, it stays reached. The limiter does not drop old pairs to make room for new ones; that would make log output non-deterministic across process restarts. Call `reset()` if you need to clear state (e.g. at the start of a new request scope).
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
